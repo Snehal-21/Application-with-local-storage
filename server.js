@@ -48,6 +48,38 @@ function register(event) {
     }
     
 
+
+    function login(event){
+        event.preventDefault();
+        var email = document.getElementById("useremail").value;
+        var password = document.getElementById("userpassword").value;
+
+        if(email && password){
+        var logindataarray=JSON.parse(localStorage.getItem("users")) || [];
+        var flagforlogoin=false;
+        for(var i=0;i<logindataarray.length;i++){
+            if(logindataarray[i].uemail==email && logindataarray[i].upassword==password){
+                flagforlogoin=true;
+            }
+        }
+        if(flagforlogoin==true){
+            alert("Already Exist.")
+        }
+        else{
+            var loginuserdata={uemail:email,upassword:password}
+            logindataarray.push(loginuserdata)
+            localStorage.setItem("users",JSON.stringify(logindataarray))
+            alert("login successfully.")
+            document.getElementById("useremail").value=''
+            document.getElementById("userpassword").value=''
+        }
+
+    }
+    else{
+        alert("Both fields are required.")
+    }
+}
+
     // if(name && email && password && confirmpassword){
     //     if(password.length >=8 && confirmpassword.length >=8){
     //         if(password==confirmpassword){
