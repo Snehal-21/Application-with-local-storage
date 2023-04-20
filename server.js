@@ -47,31 +47,35 @@ function register(event) {
     }
     }
     
-
+// Step 1  : Get user typed data from html to JS = Completed
+// Step 2 : Get all users data into JS from LS = Completed
+// Step 3 : Iterate all users (LS) with user typed data 
+// Step 4 : If email & password both match at same time then
+//  show user suceess
 
     function login(event){
         event.preventDefault();
         var email = document.getElementById("useremail").value;
         var password = document.getElementById("userpassword").value;
+        var currentuser={}
 
         if(email && password){
-        var logindataarray=JSON.parse(localStorage.getItem("users")) || [];
+        var logindataarray=JSON.parse(localStorage.getItem("users"));
         var flagforlogoin=false;
         for(var i=0;i<logindataarray.length;i++){
             if(logindataarray[i].uemail==email && logindataarray[i].upassword==password){
                 flagforlogoin=true;
+                currentuser=logindataarray[i];
             }
         }
         if(flagforlogoin==true){
-            alert("Already Exist.")
+            // alert("Login Successful")
+            localStorage.setItem("currentuser",JSON.stringify(currentuser));
+            window.location.href = "./rediret.html";
         }
         else{
-            var loginuserdata={uemail:email,upassword:password}
-            logindataarray.push(loginuserdata)
-            localStorage.setItem("users",JSON.stringify(logindataarray))
-            alert("login successfully.")
-            document.getElementById("useremail").value=''
-            document.getElementById("userpassword").value=''
+            alert("Credentials not matched")
+
         }
 
     }
