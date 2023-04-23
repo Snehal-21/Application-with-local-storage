@@ -55,7 +55,7 @@ function login(event){
     var ls_loginuser;
 
    if(l_email && l_password){
-    var array=JSON.parse(localStorage.getItem("lsuser"))
+    var array=JSON.parse(localStorage.getItem("lsuser"));
     var flag=false;
     for(var i=0;i<array.length;i++){
         if(array[i].uemail==l_email && array[i].upassword==l_password){
@@ -63,13 +63,14 @@ function login(event){
             ls_loginuser=array[i];
         }
     }
-    if(flag==false){
-        alert("credentials not matched")
-    }
-    else{
-        localStorage.setItem("ls-loginuser",JSON.stringify(ls_loginuser))
+    if(flag==true){
+         localStorage.setItem("ls-loginuser",JSON.stringify(ls_loginuser))
         alert("logged in successfully")
         window.location.href="./home.html"
+    }
+    else{
+        alert("credentials not matched")
+       
     }
 }
    else{

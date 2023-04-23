@@ -13,23 +13,17 @@
    <button onclick="window.location.href = `./register.html`">REGISTER</button>
 </div>
     <script>
-        window.onload=function(){
-            // alert("working")
-
-            var currentuser=JSON.parse(localStorage.getItem("currentuser"))
-            // console.log(currentuser,"currentuser")
-            if(!!currentuser){
-                var divforhtml=document.getElementById("switch");
-                // var h1=document.createElement("h1");
-                // h1.innerText="Snehal";
-                // divforhtml.append(h1)
-                var name=`<h1>${currentuser.uname}</h1>`
-                divforhtml.innerHTML=name;
-            }
-            else{
-                alert("current user absent")
-            }
+       window.onload=function(){
+        var display=JSON.parse(localStorage.getItem("ls-loginuser"));
+        if(display){
+            var div=document.getElementById("switch");
+            var name=`<h1>${display.uname}</h1>`
+            div.innerHTML=name;
         }
+        else{
+            alert("user not present")
+        }
+       }
     </script>
 </body>
 </html>
